@@ -112,13 +112,13 @@ def is_intersect( segment1, segment2 ):
 if __name__ == "__main__":
 
 	polygon = [ (1, 1), (0, 3), (3, 4), (5, 1) ];
-	points = [ ( 1, 1 ), ( 2, 2 ), ( 3, 3 ), ( 0, 0 ), ( 5, 5) ]; # expect: in, in, in, out, out
+	points = [ ( 1, 1 ), ( 2, 2 ), ( 3, 3 ), ( 0, 0 ), ( 5, 5) ]; # expect: true, true, true, false, false
 	results = [];
 
 
 	for point in points:
 		results.append( is_point_in_polygon( point, polygon ) );
 
-	print( "results",  ) 
+	print( "results", results ); 
 
 
