@@ -7,7 +7,7 @@ class Node:
         self.value = value
 
 
-    # left order tree traversal: left - root -right
+    # Left order tree traversal: left - root -right
     def print_tree( self ):
     	if self.left:
     		self.left.print_tree();
@@ -15,50 +15,36 @@ class Node:
     	if self.right:
     		self.right.print_tree();
 
-# class DoublyLL:
-
-# 	def __init__(self, value):
-# 		self.back = None;
-# 		self.forward = None;
-# 		self.value = value;
+    # Prints doubly linked list
+    def print_LL( self ):
+    	curr = self;
+    	while ( curr ):
+    		print( curr.value );
+    		curr = curr.right;
 
 '''
-	Convert a binary tree into a doubly linked list using reverse inorder traversal.
+	Covert a binary tree into a doubly linked list
+	Parameters: 
+		root - root node of the tree
+		LLhead - head of the linked list
+	Return 
+		LLhead - head of the linked list.
 '''
 def TreetoDLL( root, LLhead ):
 
 	if ( root == None ):
 		return None;
 
-	# Recursively convert the right subtree
-	LLhead = TreetoDLL( root.right, LLhead );
-
-	root.right = LLhead;
-
-	if ( LLhead ):
-		LLhead.left = root;
-
-	LLhead = root;
-
-	LLhead = TreetoDLL( root.left, LLhead );
-
-	return LLhead;
-
-
-def TreetoDLL2( root, LLhead ):
-	
-
+	# Recursively construct DLL for right subtree if it actually exist
 	if ( root.right ):
 		LLhead = TreetoDLL( root.right, LLhead );
 
-	root.right = LLhead;
-
+	root.right = LLhead; # pointing to the head of the DLL created for the right subtree
 	if ( LLhead ):
-		LLhead.left = root;
+		LLhead.left = root; # having the back pointer pointing to the root 
+	LLhead = root; # make the root the start of the linked list
 
-	LLhead = root;
-
-	if ( root.left, LLhead ):
+	if ( root.left ):
 		LLhead = TreetoDLL( root.left, LLhead );
 
 	return LLhead;
@@ -74,12 +60,81 @@ if __name__ == "__main__":
 	root.right.left = Node( 12 );
 	root.right.right = Node( 18 );
 
-	DLL = TreetoDLL(root, None);
-	DLL.print_tree;
+	DLL = TreetoDLL( root, None );
+	DLL.print_LL();
 
-	
-	# LL = TreetoDLL( root, None ); 
 
-	# LL.print_tree();
-	# root.print_tree();
-	# root.print_node();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def TreetoDLL2( root, LLhead ):
+# 	print( "-----" );
+# 	if ( root ):
+# 		print( "root", root.value );
+# 	else:
+# 		print( "root None" );
+
+# 	if ( root.right ):
+# 		LLhead = TreetoDLL2( root.right, LLhead );
+
+# 	root.right = LLhead;
+
+# 	if ( LLhead ):
+# 		LLhead.left = root;
+
+# 	LLhead = root;
+
+# 	print( "middle LLhead", LLhead.value );
+
+# 	if ( root.left ):
+# 		LLhead = TreetoDLL2( root.left, LLhead );
+
+# 	if ( LLhead ):
+# 		print( "LLhead", LLhead.value );
+# 	else:
+# 		print( "LLhead Null ");
+
+# 	return LLhead;
+
+
+
+# def TreetoDLL( root, LLhead ):
+
+# 	if ( root ):
+# 		print( "root", root.value );
+# 	else:
+# 		print( "root None" );
+
+
+# 	if ( root == None ):
+# 		return None;
+
+# 	# Recursively convert the right subtree
+# 	LLhead = TreetoDLL( root.right, LLhead );
+
+# 	root.right = LLhead;
+
+# 	if ( LLhead ):
+# 		LLhead.left = root;
+
+# 	LLhead = root;
+
+# 	LLhead = TreetoDLL( root.left, LLhead );
+
+# 	if ( LLhead ):
+# 		print( "LLhead", LLhead.value );
+# 	else:
+# 		print( "LLhead Null ");
+
+# 	return LLhead;

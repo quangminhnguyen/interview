@@ -85,3 +85,7 @@ if __name__ == "__main__":
 	print( "Pre-order tree traversal", pre_order( bst, 0 ) );
 	print( "Tree-depth", calculate_depth( bst, 0 ) );
 	print( "Count number of leaves", count_leave( bst, 0 ) );
+
+	# post-order: left right root 
+	# pre-order: root left right 
+	# inorder: left right root
