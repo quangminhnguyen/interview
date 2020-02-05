@@ -45,9 +45,62 @@ class Stack:
 		return copyend;
 
 
+	def get_last_element( self ):
+		return self.end;
+
 
 	def length( self ):
 		return self.length;
+
+
+class SpecialStack: 
+
+	def __init__( self ):
+
+		# stack1 - stores all actual values
+		stack1 = Stack();
+
+		# stack2 - responsible for keeping the minimum values overtime
+		stack2 = Stack();
+
+	def push( self, value ):
+		
+		n = Node( value );
+		self.stack1.push( n );
+
+		if self.stack2.length == 0:
+			self.stack2.push( n );
+		else:
+			temp = self.stack2.get_last_element();
+			if temp.value >= n.value:
+				self.stack2.push( n );
+			elif temp.value < n.value:
+				self.stack2.push( temp );
+
+
+			#if self.stack2.get_last_element().value > n.value:
+			#	self.stack2.pop();
+			#	self.stack2.push( n );
+
+			#temp = stack2.pop();
+			#if temp.value > n.value:
+			#	stack2.push( n );
+			#else:
+			#	stack2.push( temp );
+
+	def pop( self ):
+		stack2.pop();
+		return stack1.pop();
+
+
+
+
+
+	def getmin( self, val ):	
+		return stack2.get_last_element().value;
+
+
+
 
 if __name__ == '__main__':
 	n1 = Node( '1' );
@@ -64,10 +117,5 @@ if __name__ == '__main__':
 	print( stack.pop().value );
 	print( stack.pop().value );
 
-	#print( stack.pop().value );
-	#print( stack.pop().value );
 
-	#print( "stack.value ",  stack..pop );
-	#print( "stack.next.value", stack.next.value );
-	#print( "stack.next.next.next.value", stack.next.next.value );
 
