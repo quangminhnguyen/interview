@@ -63,6 +63,11 @@ class SpecialStack:
 		# stack2 - responsible for keeping the minimum values overtime
 		stack2 = Stack();
 
+
+	'''
+		Push a new value into the data structure. This involves first push the value
+		into stack1, then push the current minimum value to stack2.
+	'''
 	def push( self, value ):
 		
 		n = Node( value );
@@ -77,17 +82,9 @@ class SpecialStack:
 			elif temp.value < n.value:
 				self.stack2.push( temp );
 
-
-			#if self.stack2.get_last_element().value > n.value:
-			#	self.stack2.pop();
-			#	self.stack2.push( n );
-
-			#temp = stack2.pop();
-			#if temp.value > n.value:
-			#	stack2.push( n );
-			#else:
-			#	stack2.push( temp );
-
+	'''
+		Pop data from the datastructure
+	'''				
 	def pop( self ):
 		stack2.pop();
 		return stack1.pop();
@@ -95,14 +92,18 @@ class SpecialStack:
 
 
 
-
-	def getmin( self, val ):	
+	'''
+		Retrieves the minimum value
+	'''
+	def getmin( self ):	
 		return stack2.get_last_element().value;
 
 
 
 
 if __name__ == '__main__':
+
+	# Tests the stack
 	n1 = Node( '1' );
 	n2 = Node( '2' );
 	n3 = Node( '3' );
@@ -116,6 +117,16 @@ if __name__ == '__main__':
 	print( stack.pop().value );
 	print( stack.pop().value );
 	print( stack.pop().value );
+
+
+	# Tests Special Stack
+	sstack1 = new SpecialStack();
+	sstack1.push( 21 );
+	sstack1.push( 3 );
+	sstack1.push( 4 );
+
+	print( "minimum value", sstack1.getmin());
+
 
 
 
