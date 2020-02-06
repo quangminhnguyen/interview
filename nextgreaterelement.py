@@ -4,6 +4,10 @@
 	e.g. [2, 3, 5, 7] ==> [2, 3, 5, -1]. No element on the right of
 	7 is bigger than it.
 	O(n^2) solutions
+	Parameters:
+		array - list of integer numbers
+	Return:
+		list of next greater elements
 '''
 def next_greater_elems( array ):
 	greater_elems = [];
@@ -18,11 +22,19 @@ def next_greater_elems( array ):
 		# No element on the right of array[i] is greater than it
 		if (flag == False):
 			greater_elems.append( -1 );
-			
+
 	print( "greater elements", greater_elems );
 
-
-
+'''
+	Return the next greater elements for every value in the array
+	e.g. [2, 3, 5, 7] ==> [2, 3, 5, -1]. No element on the right of
+	7 is bigger than it.
+	O(n) solutions using stack
+	Parameters:
+		array = list of integer numbers
+	Return: 
+		list of next greater elements
+'''
 def next_greater_elems2( array ):
 	temp = []; # acts as a stack.
 	rs = [-1] * len(array);
