@@ -36,17 +36,40 @@ def longest_palimodrome_subsequence( string ):
 '''
 	Recursive solution with memorization
 '''
-def longest_palimodrome_subsequence( string ):
-	#
-	# 0 - default value, -1 - is a palimdrome, 1 - is not a pali
-	temp = [[0 * len(string)] * len(string)];
-	for i in range( len( string ) ):
-		for j in range( i, len( string ), 1 ): 
-			if ( (i == j) or (j == i + 1) ):
-				temp[i][j] = 1;
-				continue;
+def longest_palimodrome_subsequence2( string ):
+	temp = [[0 * len(string) ] * len(string)];
+
+	for ssl in range( 0, len( string ) + 1 ):
+		for start in range( len(string) ):
+			end = min( len(string), start + ssl );
+			if (start == end): 
+				temp[start][end] = 0;
+			elif (start == end + 1):
+				temp[start][end] = 1;
 			else:
-				temp[i][j] = 0;
+				if (string[start] == string[end]):
+					temp[start][end] = temp[start + 1][end - 1] + 2;
+				elif (string[start] != string[end]):
+					temp[start][end] = max(temp[start + 1][end], temp[start][end - 1]);
+
+	return temp;
+
+
+
+
+
+
+
+
+
+	#for i in range( len( string ) ):
+	#	for j in range( i, len( string ), 1 ): 
+			
+			#if ( (i == j) or (j == i + 1) ):
+			#	temp[i][j] = 1;
+			#	continue;
+			#else:
+			#	temp[i][j] = 0;
 
 				# temp[i][j] 
 
@@ -68,4 +91,5 @@ def longest_palimodrome_subsequence( string ):
 if __name__ == '__main__':
 	string = 'abccba';
 	print( "test ", is_palimodrome( string ));
-	print( "longest palimodrome", longest_palimodrome_subsequence( 'abcdef' ) ); 
+	print( "longest palimodrome without memorization", longest_palimodrome_subsequence2( 'abcdef' ) ); 
+	print( "longest palimodrome with memorization", longest_palimodrome_subsequence( 'abcdef' ) ); 
