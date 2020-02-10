@@ -18,13 +18,17 @@ def is_palimodrome( string ):
 
 '''
 	Recursive solution without memorizing
+	Parameter:
+		string - input string 
+	Return:
+		longest palimodrome
 '''
 def longest_palimodrome_subsequence( string ):
 	if len(string) == 0:
-		return True;
+		return 0;
 
 	if len(string) == 1:
-		return True;
+		return 1;
 	
 	if string[0] == string[-1]:
 		return longest_palimodrome_subsequence( string[1: -1] ) + 2; 
@@ -34,56 +38,37 @@ def longest_palimodrome_subsequence( string ):
 	
 		
 '''
-	Recursive solution with memorization
+	Dynamic solution
+	Parameter: 
+		string -  input string
+	Return:
+		longest palimodrome
 '''
 def longest_palimodrome_subsequence2( string ):
-	temp = [[0 * len(string) ] * len(string)];
 
-	for ssl in range( 0, len( string ) + 1 ):
+	temp = [[0 for i in range(len(string)) ] for j in range(len(string)) ];
+
+	for ssl in range( len(string) ):
 		for start in range( len(string) ):
-			end = min( len(string), start + ssl );
-			if (start == end): 
-				temp[start][end] = 0;
-			elif (start == end + 1):
-				temp[start][end] = 1;
-			else:
-				if (string[start] == string[end]):
-					temp[start][end] = temp[start + 1][end - 1] + 2;
-				elif (string[start] != string[end]):
-					temp[start][end] = max(temp[start + 1][end], temp[start][end - 1]);
-
-	return temp;
-
-
-
-
-
-
+			end = min( len(string) - 1, start + ssl);
+			temp[start][end];
+			if (start == end):
+				temp[start][end] == 1
+			elif (start != end):
+				if string[start] == string[end]:
+					if end == (start + 1):
+						temp[start][end] = 2;
+					else:
+						temp[start][end] = temp[start + 1][end - 1] + 2;
+				elif string[start] != string[end]:	
+					if end == (start + 1):
+						temp[start][end] = 0;
+					else:
+						temp[start][end] = max( temp[start + 1][end], temp[start][end - 1] );
+	return temp[0][len(string) - 1];
 
 
 
-	#for i in range( len( string ) ):
-	#	for j in range( i, len( string ), 1 ): 
-			
-			#if ( (i == j) or (j == i + 1) ):
-			#	temp[i][j] = 1;
-			#	continue;
-			#else:
-			#	temp[i][j] = 0;
-
-				# temp[i][j] 
-
-				# temp[i][j] = 1;
-
-
-
-			#if temp[i][j] == 0:
-			#	temp[i][j] = longest_palimodrome_subsequence
-
-
-				# temp[][]
-
-			# if ( i == j or j = i + 1 or i = j + 1 ):
 			
 
 
@@ -91,5 +76,42 @@ def longest_palimodrome_subsequence2( string ):
 if __name__ == '__main__':
 	string = 'abccba';
 	print( "test ", is_palimodrome( string ));
-	print( "longest palimodrome without memorization", longest_palimodrome_subsequence2( 'abcdef' ) ); 
-	print( "longest palimodrome with memorization", longest_palimodrome_subsequence( 'abcdef' ) ); 
+	print( "longest palimodrome without memorization", longest_palimodrome_subsequence( string ) ); 
+	print( "longest palimodrome with memorization", longest_palimodrome_subsequence2( string ) ); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	# def longest_palimodrome_subsequence2( string ):
+# 	temp = [[0 for i in range(len(string) + 1) ] for j in range(len(string) + 1) ];
+
+# 	# ssl = substring length
+# 	for ssl in range( 1, len( string ) + 1 ):
+# 		for start in range( len(string) ):
+# 			#print( "-------" );
+# 			end = min( len(string) , start + ssl );
+# 			#print( "start", start );
+# 			#print( "end", end );
+# 			#print( "ssl", ssl );
+# 			if (start == end): 
+# 				temp[start][end] = 0;
+# 			elif (end == start + 1):
+# 				temp[start][end] = 1;
+# 			else:
+# 				if (string[start] == string[end - 1]):
+# 					temp[start][end] = temp[start + 1][end - 2] + 2;
+# 				elif (string[start] != string[end - 1]):
+# 					temp[start][end] = max(temp[start + 1][end - 1], temp[start][end - 2]);
+# 	return temp;
